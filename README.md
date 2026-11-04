@@ -1,2 +1,3 @@
 # shop-flow
-Digital shop project with React 
+
+Digital shop project with React
