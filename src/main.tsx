@@ -4,8 +4,12 @@ import './index.css';
 import App from './App.tsx';
 
 async function enableMocking() {
+  if (import.meta.env.VITE_USE_MOCKS !== 'true') {
+    return;
+  }
+
   const { worker } = await import('./mocks/browser');
-  await worker.start();
+  await worker.start({ onUnhandledFrame: 'bypass' });
 }
 
 enableMocking().then(() => {
