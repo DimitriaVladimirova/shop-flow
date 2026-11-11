@@ -17,4 +17,23 @@ export const handlers = [
 
     return HttpResponse.json(product);
   }),
+
+  http.get('/api/products', ({ request }) => {
+    const url = new URL(request.url);
+    const groupSlug = url.searchParams.get('group');
+    const db = getDb();
+    let products = [...db.products];
+
+    if (groupSlug) {
+      const group = db.groups.find((g) => g.slug === groupSlug);
+      products = products.filter((p) => group && p.groupIds.includes(group.id));
+    }
+
+    return HttpResponse.json({
+      items: products,
+      total: products.length,
+      page: 1,
+      pageSize: products.length,
+    });
+  }),
 ];
