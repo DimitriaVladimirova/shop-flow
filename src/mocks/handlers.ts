@@ -35,6 +35,16 @@ export const handlers = [
       products = products.filter((p) => p.name.toLowerCase().includes(search));
     }
 
+    const sort = url.searchParams.get('sort');
+
+    if (sort === 'price_asc') {
+      products.sort((a, b) => a.price - b.price);
+    } else if (sort === 'price_desc') {
+      products.sort((a, b) => b.price - a.price);
+    } else if (sort === 'name') {
+      products.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
     return HttpResponse.json({
       items: products,
       total: products.length,
