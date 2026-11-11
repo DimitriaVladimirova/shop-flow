@@ -29,6 +29,12 @@ export const handlers = [
       products = products.filter((p) => group && p.groupIds.includes(group.id));
     }
 
+    const q = url.searchParams.get('q');
+    const search = q?.toLowerCase();
+    if (search) {
+      products = products.filter((p) => p.name.toLowerCase().includes(search));
+    }
+
     return HttpResponse.json({
       items: products,
       total: products.length,
