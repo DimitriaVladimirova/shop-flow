@@ -45,11 +45,17 @@ export const handlers = [
       products.sort((a, b) => a.name.localeCompare(b.name));
     }
 
+    const total = products.length;
+    const page = Number(url.searchParams.get('page')) || 1;
+    const pageSize = Number(url.searchParams.get('pageSize')) || 8;
+    const start = (page - 1) * pageSize;
+    const items = products.slice(start, start + pageSize);
+
     return HttpResponse.json({
-      items: products,
-      total: products.length,
-      page: 1,
-      pageSize: products.length,
+      items,
+      total,
+      page,
+      pageSize,
     });
   }),
 ];
