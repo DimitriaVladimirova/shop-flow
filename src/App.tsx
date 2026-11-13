@@ -1,4 +1,4 @@
-import { ResetMockDataButton } from './mocks/resetMockDataButton';
+import { ResetMockDataButton } from './mocks/ResetMockDataButton';
 
 function App() {
   return (
