@@ -1,22 +1,23 @@
 import { delay, http, HttpResponse } from 'msw';
 import { getDb } from './db';
 
-function randomDelay() {
-  const minNum = 300;
-  const maxNum = 800;
+export function randomDelay(min = 300, max = 800) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
-  return Math.floor(Math.random() * (maxNum - minNum + 1) + minNum);
+function responseDelay() {
+  return import.meta.env.MODE === 'test' ? 0 : randomDelay();
 }
 
 export const handlers = [
   http.get('/api/groups', async () => {
-    await delay(randomDelay());
+    await delay(responseDelay());
     const db = getDb();
     return HttpResponse.json(db.groups);
   }),
 
   http.get('/api/products/:slug', async ({ params }) => {
-    await delay(randomDelay());
+    await delay(responseDelay());
     const slug = params.slug;
     const product = getDb().products.find((prod) => prod.slug === slug);
 
@@ -28,7 +29,7 @@ export const handlers = [
   }),
 
   http.get('/api/products', async ({ request }) => {
-    await delay(randomDelay());
+    await delay(responseDelay());
     const url = new URL(request.url);
     const groupSlug = url.searchParams.get('group');
     const db = getDb();
