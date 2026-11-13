@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { renderWithProviders } from '../test/renderWithProviders';
-import { ResetMockDataButton } from './resetMockDataButton';
+import { ResetMockDataButton } from './ResetMockDataButton';
 import { screen } from '@testing-library/react';
 
 describe('ResetMockDataButton', () => {
