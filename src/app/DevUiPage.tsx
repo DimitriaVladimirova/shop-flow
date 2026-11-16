@@ -1,0 +1,62 @@
+import { Button } from '../shared/ui/Button';
+
+export function DevUiPage() {
+  const colours = [
+    { name: 'primary', className: 'bg-primary' },
+    { name: 'primary-hover', className: 'bg-primary-hover' },
+    { name: 'primary-faded', className: 'bg-primary-faded' },
+    { name: 'secondary', className: 'bg-secondary' },
+    { name: 'dark', className: 'bg-dark' },
+    { name: 'second-text', className: 'bg-second-text' },
+    { name: 'muted', className: 'bg-muted' },
+    { name: 'success', className: 'bg-success' },
+    { name: 'success-faded', className: 'bg-success-faded' },
+    { name: 'alert', className: 'bg-alert' },
+    { name: 'alert-faded', className: 'bg-alert-faded' },
+    { name: 'danger', className: 'bg-danger' },
+    { name: 'disabled', className: 'bg-disabled' },
+    { name: 'light-gray-1', className: 'bg-light-gray-1' },
+    { name: 'light-gray-2', className: 'bg-light-gray-2' },
+  ];
+
+  return (
+    <main className="min-h-screen bg-light-gray-1 p-8">
+      <h1 className="text-h3 font-bold text-dark">UI components</h1>
+      <p className="mt-2 text-paragraph text-second-text">
+        Every shared component in all its variants. Development only.
+      </p>
+      <section className="mt-8">
+        <h2 className="text-h5 font-bold text-dark">Colours</h2>
+        <div className="mt-4 grid grid-cols-5 gap-4">
+          {colours.map((colour) => (
+            <div key={colour.name} className="flex items-center gap-2">
+              <div
+                className={`size-10 rounded-md border border-light-gray-2 ${colour.className}`}
+              />
+              <span className="text-small text-second-text">{colour.name}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Buttons</h2>
+
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          <Button>Primary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="danger">Danger</Button>
+          <Button variant="danger-outline">Danger outline</Button>
+        </div>
+
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          <Button size="sm">Small primary</Button>
+          <Button size="sm" variant="outline">
+            Small outline
+          </Button>
+          <Button disabled>Sold out</Button>
+          <Button loading>Place order</Button>
+        </div>
+      </section>
+    </main>
+  );
+}
