@@ -1,5 +1,7 @@
 import { Button } from '../shared/ui/Button';
 import { Input } from '../shared/ui/Input';
+import { Radio } from '../shared/ui/Radio';
+import { Checkbox } from '../shared/ui/Checkbox';
 
 export function DevUiPage() {
   const colours = [
@@ -65,6 +67,16 @@ export function DevUiPage() {
           <Input label="Password" type="password" hint="At least 8 characters." />
           <Input label="Password" type="password" error="Password must be at least 8 characters." />
           <Input label="Email" value="jane@example.com" disabled readOnly />
+        </div>
+      </section>
+      <section className="mt-7">
+        <h2 className="text-h5 font-bold text-dark">Checkbox & Radio</h2>
+        <div className="mt-5 grid max-w-md gap-6">
+          <Radio name="type" label="Food" />
+          <Radio name="type" label="Product" />
+          <Checkbox name="groups" label="Dairy" defaultChecked />
+          <Checkbox name="groups" label="Drinks" />
+          <Checkbox name="groups" label="Bakery" disabled readOnly />
         </div>
       </section>
     </main>
