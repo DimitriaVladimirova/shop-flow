@@ -1,4 +1,8 @@
 import { Button } from '../shared/ui/Button';
+import { Input } from '../shared/ui/Input';
+import { Radio } from '../shared/ui/Radio';
+import { Checkbox } from '../shared/ui/Checkbox';
+import { Select } from '../shared/ui/Select';
 
 export function DevUiPage() {
   const colours = [
@@ -55,6 +59,41 @@ export function DevUiPage() {
           </Button>
           <Button disabled>Sold out</Button>
           <Button loading>Place order</Button>
+        </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Inputs</h2>
+        <div className="mt-4 grid max-w-md gap-6">
+          <Input label="Email" type="email" placeholder="you@example.com" />
+          <Input label="Password" type="password" hint="At least 8 characters." />
+          <Input label="Password" type="password" error="Password must be at least 8 characters." />
+          <Input label="Email" value="jane@example.com" disabled readOnly />
+        </div>
+      </section>
+      <section className="mt-7">
+        <h2 className="text-h5 font-bold text-dark">Checkbox & Radio</h2>
+        <div className="mt-5 grid max-w-md gap-6">
+          <Radio name="type" label="Food" />
+          <Radio name="type" label="Product" />
+          <Checkbox name="groups" label="Dairy" defaultChecked />
+          <Checkbox name="groups" label="Drinks" />
+          <Checkbox name="groups" label="Bakery" disabled readOnly />
+        </div>
+      </section>
+      <section className="mt-7">
+        <h2 className="text-h5 font-bold text-dark">Select</h2>
+        <div className="mt-5 grid max-w-md gap-6">
+          <Select label="Sort by" defaultValue="price_asc">
+            <option value="price_asc">Price: low to high</option>
+            <option value="price_desc">Price: high to low</option>
+            <option value="name">Name</option>
+          </Select>
+
+          <Select label="Type" defaultValue="" error="Please choose a type.">
+            <option value="">Please choose…</option>
+            <option value="food">Food</option>
+            <option value="product">Product</option>
+          </Select>
         </div>
       </section>
     </main>
