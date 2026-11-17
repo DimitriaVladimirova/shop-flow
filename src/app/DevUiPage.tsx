@@ -1,4 +1,5 @@
 import { Button } from '../shared/ui/Button';
+import { Input } from '../shared/ui/Input';
 
 export function DevUiPage() {
   const colours = [
@@ -55,6 +56,15 @@ export function DevUiPage() {
           </Button>
           <Button disabled>Sold out</Button>
           <Button loading>Place order</Button>
+        </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Inputs</h2>
+        <div className="mt-4 grid max-w-md gap-6">
+          <Input label="Email" type="email" placeholder="you@example.com" />
+          <Input label="Password" type="password" hint="At least 8 characters." />
+          <Input label="Password" type="password" error="Password must be at least 8 characters." />
+          <Input label="Email" value="jane@example.com" disabled readOnly />
         </div>
       </section>
     </main>
