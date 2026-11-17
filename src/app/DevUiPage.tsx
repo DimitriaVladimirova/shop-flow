@@ -3,6 +3,7 @@ import { Input } from '../shared/ui/Input';
 import { Radio } from '../shared/ui/Radio';
 import { Checkbox } from '../shared/ui/Checkbox';
 import { Select } from '../shared/ui/Select';
+import { Badge } from '../shared/ui/Badge';
 
 export function DevUiPage() {
   const colours = [
@@ -94,6 +95,17 @@ export function DevUiPage() {
             <option value="food">Food</option>
             <option value="product">Product</option>
           </Select>
+        </div>
+      </section>
+
+      <section className="mt-7">
+        <h2 className="text-h5 font-bold text-dark">Badges</h2>
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <Badge>Placed</Badge>
+          <Badge tone="info">Shipped</Badge>
+          <Badge tone="success">Delivered</Badge>
+          <Badge tone="warning">Preparing</Badge>
+          <Badge tone="danger">Sold out</Badge>
         </div>
       </section>
     </main>
