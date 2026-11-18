@@ -1,6 +1,5 @@
 import type { HTMLAttributes } from 'react';
-
-type Tone = 'neutral' | 'info' | 'success' | 'warning' | 'danger';
+import type { Tone } from './tone';
 
 type CardProps = HTMLAttributes<HTMLSpanElement> & {
   tone?: Tone;
