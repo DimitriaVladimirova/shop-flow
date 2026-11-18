@@ -4,6 +4,7 @@ import { Radio } from '../shared/ui/Radio';
 import { Checkbox } from '../shared/ui/Checkbox';
 import { Select } from '../shared/ui/Select';
 import { Badge } from '../shared/ui/Badge';
+import { Card } from '../shared/ui/Card';
 
 export function DevUiPage() {
   const colours = [
@@ -64,7 +65,7 @@ export function DevUiPage() {
       </section>
       <section className="mt-10">
         <h2 className="text-h5 font-bold text-dark">Inputs</h2>
-        <div className="mt-4 grid max-w-md gap-6">
+        <div className="mt-4 grid max-w-md gap-4">
           <Input label="Email" type="email" placeholder="you@example.com" />
           <Input label="Password" type="password" hint="At least 8 characters." />
           <Input label="Password" type="password" error="Password must be at least 8 characters." />
@@ -83,7 +84,7 @@ export function DevUiPage() {
       </section>
       <section className="mt-7">
         <h2 className="text-h5 font-bold text-dark">Select</h2>
-        <div className="mt-5 grid max-w-md gap-6">
+        <div className="mt-5 grid max-w-md gap-4">
           <Select label="Sort by" defaultValue="price_asc">
             <option value="price_asc">Price: low to high</option>
             <option value="price_desc">Price: high to low</option>
@@ -106,6 +107,29 @@ export function DevUiPage() {
           <Badge tone="success">Delivered</Badge>
           <Badge tone="warning">Preparing</Badge>
           <Badge tone="danger">Sold out</Badge>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Cards</h2>
+        <div className="mt-4 grid max-w-3xl grid-cols-2 gap-6">
+          <Card>
+            <p className="text-paragraph text-second-text">A plain card without a text</p>
+          </Card>
+          <Card title="Order summary" tone="info">
+            <p className="text-paragraph text-second-text">Subtotal (4 items): €58.47</p>
+          </Card>
+          <Card title="Order status" tone="success">
+            <p className="text-paragraph text-second-text">Shipped · On its way</p>
+          </Card>
+          <Card title="Delivery" tone="warning">
+            <p className="text-paragraph text-second-text">12 Vitosha Blvd, apt. 4, 1000 Sofia</p>
+          </Card>
+          <Card title="Delete" tone="danger">
+            <p className="text-paragraph text-second-text">
+              Removes it from the shop. Past orders keep their copy.
+            </p>
+          </Card>
         </div>
       </section>
     </main>
