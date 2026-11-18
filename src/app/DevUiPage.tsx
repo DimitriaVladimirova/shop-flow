@@ -5,6 +5,10 @@ import { Checkbox } from '../shared/ui/Checkbox';
 import { Select } from '../shared/ui/Select';
 import { Badge } from '../shared/ui/Badge';
 import { Card } from '../shared/ui/Card';
+import { Skeleton } from '../shared/ui/Skeleton';
+import { Spinner } from '../shared/ui/Spinner';
+import { EmptyState } from '../shared/ui/EmptyState';
+import { Switch } from '../shared/ui/Switch';
 
 export function DevUiPage() {
   const colours = [
@@ -80,6 +84,9 @@ export function DevUiPage() {
           <Checkbox name="groups" label="Dairy" defaultChecked />
           <Checkbox name="groups" label="Drinks" />
           <Checkbox name="groups" label="Bakery" disabled readOnly />
+          <Switch label="Age confirmation" disabled />
+          <Switch label="Delivery time slot" defaultChecked />
+          <Switch label="Gift wrapping" />
         </div>
       </section>
       <section className="mt-7">
@@ -129,6 +136,39 @@ export function DevUiPage() {
             <p className="text-paragraph text-second-text">
               Removes it from the shop. Past orders keep their copy.
             </p>
+          </Card>
+        </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Skeleton</h2>
+        <div className="grid max-w-sm gap-3">
+          <Skeleton className="h-6 w-40" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-2/3" />
+          <Skeleton className="aspect-square w-40" />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Spinner</h2>
+        <div className="mt-4 flex items-center gap-4">
+          <Spinner />
+          <Spinner label="Loading products" className="size-10" />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Empty state</h2>
+        <div className="mt-4 grid max-w-3xl grid-cols-2 gap-6">
+          <Card>
+            <EmptyState
+              title="Your cart is empty"
+              description="Browse the shop and add something you like."
+              action={<Button>Start shopping</Button>}
+            />
+          </Card>
+          <Card>
+            <EmptyState title="No orders yet" />
           </Card>
         </div>
       </section>
