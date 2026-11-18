@@ -3,6 +3,12 @@ import { Input } from '../shared/ui/Input';
 import { Radio } from '../shared/ui/Radio';
 import { Checkbox } from '../shared/ui/Checkbox';
 import { Select } from '../shared/ui/Select';
+import { Badge } from '../shared/ui/Badge';
+import { Card } from '../shared/ui/Card';
+import { Skeleton } from '../shared/ui/Skeleton';
+import { Spinner } from '../shared/ui/Spinner';
+import { EmptyState } from '../shared/ui/EmptyState';
+import { Switch } from '../shared/ui/Switch';
 
 export function DevUiPage() {
   const colours = [
@@ -63,7 +69,7 @@ export function DevUiPage() {
       </section>
       <section className="mt-10">
         <h2 className="text-h5 font-bold text-dark">Inputs</h2>
-        <div className="mt-4 grid max-w-md gap-6">
+        <div className="mt-4 grid max-w-md gap-4">
           <Input label="Email" type="email" placeholder="you@example.com" />
           <Input label="Password" type="password" hint="At least 8 characters." />
           <Input label="Password" type="password" error="Password must be at least 8 characters." />
@@ -78,11 +84,14 @@ export function DevUiPage() {
           <Checkbox name="groups" label="Dairy" defaultChecked />
           <Checkbox name="groups" label="Drinks" />
           <Checkbox name="groups" label="Bakery" disabled readOnly />
+          <Switch label="Age confirmation" disabled />
+          <Switch label="Delivery time slot" defaultChecked />
+          <Switch label="Gift wrapping" />
         </div>
       </section>
       <section className="mt-7">
         <h2 className="text-h5 font-bold text-dark">Select</h2>
-        <div className="mt-5 grid max-w-md gap-6">
+        <div className="mt-5 grid max-w-md gap-4">
           <Select label="Sort by" defaultValue="price_asc">
             <option value="price_asc">Price: low to high</option>
             <option value="price_desc">Price: high to low</option>
@@ -94,6 +103,73 @@ export function DevUiPage() {
             <option value="food">Food</option>
             <option value="product">Product</option>
           </Select>
+        </div>
+      </section>
+
+      <section className="mt-7">
+        <h2 className="text-h5 font-bold text-dark">Badges</h2>
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <Badge>Placed</Badge>
+          <Badge tone="info">Shipped</Badge>
+          <Badge tone="success">Delivered</Badge>
+          <Badge tone="warning">Preparing</Badge>
+          <Badge tone="danger">Sold out</Badge>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Cards</h2>
+        <div className="mt-4 grid max-w-3xl grid-cols-2 gap-6">
+          <Card>
+            <p className="text-paragraph text-second-text">A plain card without a text</p>
+          </Card>
+          <Card title="Order summary" tone="info">
+            <p className="text-paragraph text-second-text">Subtotal (4 items): €58.47</p>
+          </Card>
+          <Card title="Order status" tone="success">
+            <p className="text-paragraph text-second-text">Shipped · On its way</p>
+          </Card>
+          <Card title="Delivery" tone="warning">
+            <p className="text-paragraph text-second-text">12 Vitosha Blvd, apt. 4, 1000 Sofia</p>
+          </Card>
+          <Card title="Delete" tone="danger">
+            <p className="text-paragraph text-second-text">
+              Removes it from the shop. Past orders keep their copy.
+            </p>
+          </Card>
+        </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Skeleton</h2>
+        <div className="grid max-w-sm gap-3">
+          <Skeleton className="h-6 w-40" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-2/3" />
+          <Skeleton className="aspect-square w-40" />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Spinner</h2>
+        <div className="mt-4 flex items-center gap-4">
+          <Spinner />
+          <Spinner label="Loading products" className="size-10" />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Empty state</h2>
+        <div className="mt-4 grid max-w-3xl grid-cols-2 gap-6">
+          <Card>
+            <EmptyState
+              title="Your cart is empty"
+              description="Browse the shop and add something you like."
+              action={<Button>Start shopping</Button>}
+            />
+          </Card>
+          <Card>
+            <EmptyState title="No orders yet" />
+          </Card>
         </div>
       </section>
     </main>
