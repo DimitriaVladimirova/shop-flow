@@ -11,6 +11,7 @@ import { EmptyState } from '../shared/ui/EmptyState';
 import { Switch } from '../shared/ui/Switch';
 import { Modal } from '../shared/ui/Modal';
 import { useState } from 'react';
+import { Toast } from '../shared/ui/Toast';
 
 export function DevUiPage() {
   const colours = [
@@ -32,6 +33,7 @@ export function DevUiPage() {
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   return (
     <main className="min-h-screen bg-light-gray-1 p-8">
@@ -203,6 +205,22 @@ export function DevUiPage() {
             </Button>
           </div>
         </Modal>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Toast</h2>
+        <div className="mt-4">
+          <Button onClick={() => setIsToastVisible(true)}>Show toast</Button>
+          {isToastVisible && (
+            <div className="fixed right-4 bottom-4">
+              <Toast
+                message="Your order #SF-10234 is now Shipped"
+                tone="success"
+                onClose={() => setIsToastVisible(false)}
+              />
+            </div>
+          )}
+        </div>
       </section>
     </main>
   );
