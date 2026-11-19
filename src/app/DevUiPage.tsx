@@ -13,6 +13,7 @@ import { Modal } from '../shared/ui/Modal';
 import { useState } from 'react';
 import { Toast } from '../shared/ui/Toast';
 import { Table, TBody, THead, Tr, Th, Td } from '../shared/ui/Table';
+import { Header } from '../shared/layout/Header';
 
 export function DevUiPage() {
   const colours = [
@@ -284,6 +285,21 @@ export function DevUiPage() {
             </Table>
           </Card>
         </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Navigation</h2>
+        <Header
+          actions={
+            <>
+              <a href="/login" className="text-h6 font-bold text-primary">
+                Log in / Register
+              </a>
+              <Button size="sm" variant="outline">
+                Cart (2)
+              </Button>
+            </>
+          }
+        />
       </section>
     </main>
   );
