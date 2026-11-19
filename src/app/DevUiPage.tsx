@@ -9,6 +9,9 @@ import { Skeleton } from '../shared/ui/Skeleton';
 import { Spinner } from '../shared/ui/Spinner';
 import { EmptyState } from '../shared/ui/EmptyState';
 import { Switch } from '../shared/ui/Switch';
+import { Modal } from '../shared/ui/Modal';
+import { useState } from 'react';
+import { Toast } from '../shared/ui/Toast';
 
 export function DevUiPage() {
   const colours = [
@@ -28,6 +31,9 @@ export function DevUiPage() {
     { name: 'light-gray-1', className: 'bg-light-gray-1' },
     { name: 'light-gray-2', className: 'bg-light-gray-2' },
   ];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   return (
     <main className="min-h-screen bg-light-gray-1 p-8">
@@ -170,6 +176,50 @@ export function DevUiPage() {
           <Card>
             <EmptyState title="No orders yet" />
           </Card>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Modal</h2>
+        <div className="mt-4">
+          <Button variant="danger" onClick={() => setIsModalOpen(true)}>
+            Delete product
+          </Button>
+        </div>
+
+        <Modal
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Delete “Gouda Cheese, 300 g”?"
+        >
+          <p className="text-paragraph text-second-text">
+            The product will be removed from the shop. Orders that already include it keep their
+            copy. This can’t be undone.
+          </p>
+          <div className="flex justify-end gap-3">
+            <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={() => setIsModalOpen(false)}>
+              Delete
+            </Button>
+          </div>
+        </Modal>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Toast</h2>
+        <div className="mt-4">
+          <Button onClick={() => setIsToastVisible(true)}>Show toast</Button>
+          {isToastVisible && (
+            <div className="fixed right-4 bottom-4">
+              <Toast
+                message="Your order #SF-10234 is now Shipped"
+                tone="success"
+                onClose={() => setIsToastVisible(false)}
+              />
+            </div>
+          )}
         </div>
       </section>
     </main>
