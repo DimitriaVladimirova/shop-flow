@@ -12,6 +12,7 @@ import { Switch } from '../shared/ui/Switch';
 import { Modal } from '../shared/ui/Modal';
 import { useState } from 'react';
 import { Toast } from '../shared/ui/Toast';
+import { Table, TBody, THead, Tr, Th, Td } from '../shared/ui/Table';
 
 export function DevUiPage() {
   const colours = [
@@ -220,6 +221,68 @@ export function DevUiPage() {
               />
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Table</h2>
+        <div className="mt-4 max-w-3xl">
+          <Card>
+            <Table caption="My orders">
+              <THead>
+                <Tr>
+                  <Th>Order</Th>
+                  <Th>Date</Th>
+                  <Th>Status</Th>
+                  <Th>Total</Th>
+                  <Th>
+                    <span className="sr-only">Actions</span>
+                  </Th>
+                </Tr>
+              </THead>
+              <TBody>
+                <Tr>
+                  <Td>#SF-10234</Td>
+                  <Td>12 Nov 2026</Td>
+                  <Td>
+                    <Badge tone="info">Shipped</Badge>
+                  </Td>
+                  <Td>€58.47</Td>
+                  <Td>
+                    <Button size="sm" variant="outline">
+                      View
+                    </Button>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>#SF-10198</Td>
+                  <Td>8 Nov 2026</Td>
+                  <Td>
+                    <Badge tone="success">Delivered</Badge>
+                  </Td>
+                  <Td>€23.10</Td>
+                  <Td>
+                    <Button size="sm" variant="outline">
+                      View
+                    </Button>
+                  </Td>
+                </Tr>
+                <Tr>
+                  <Td>#SF-10177</Td>
+                  <Td>2 Nov 2026</Td>
+                  <Td>
+                    <Badge tone="warning">Praparing</Badge>
+                  </Td>
+                  <Td>€41.85</Td>
+                  <Td>
+                    <Button size="sm" variant="outline">
+                      View
+                    </Button>
+                  </Td>
+                </Tr>
+              </TBody>
+            </Table>
+          </Card>
         </div>
       </section>
     </main>
