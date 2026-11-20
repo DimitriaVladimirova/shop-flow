@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Mail, Phone } from 'lucide-react';
+import { Logo } from './Logo';
 
 type HeaderProps = {
   actions?: ReactNode;
@@ -28,13 +29,7 @@ export function Header({ actions }: HeaderProps) {
       </div>
       <nav aria-label="Main" className="bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-4 px-6 py-5 md:gap-8">
-          <a
-            href="/"
-            className="text-h4 font-bold text-dark hover:text-primary inline-flex items-center gap-2"
-          >
-            <span aria-hidden="true" className="size-7 rounded-full bg-primary" />
-            ShopFlow
-          </a>
+          <Logo />
           <ul className="flex items-center gap-6">
             <li>
               <a href="/" className="text-h6 font-bold text-second-text hover:text-primary">

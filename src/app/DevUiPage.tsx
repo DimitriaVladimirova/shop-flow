@@ -15,6 +15,7 @@ import { Toast } from '../shared/ui/Toast';
 import { Table, TBody, THead, Tr, Th, Td } from '../shared/ui/Table';
 import { Header } from '../shared/layout/Header';
 import { PageHeader } from '../shared/layout/PageHeader';
+import { Footer } from '../shared/layout/Footer';
 
 export function DevUiPage() {
   const colours = [
@@ -311,6 +312,11 @@ export function DevUiPage() {
           />
           <PageHeader title="Shop" />
         </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className=" text-h5 font-bold text-dark">Footer</h2>
+        <Footer />
       </section>
     </main>
   );
