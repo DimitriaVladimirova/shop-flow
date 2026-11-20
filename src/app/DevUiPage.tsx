@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { Toast } from '../shared/ui/Toast';
 import { Table, TBody, THead, Tr, Th, Td } from '../shared/ui/Table';
 import { Header } from '../shared/layout/Header';
+import { PageHeader } from '../shared/layout/PageHeader';
 
 export function DevUiPage() {
   const colours = [
@@ -300,6 +301,16 @@ export function DevUiPage() {
             </>
           }
         />
+      </section>
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Page header</h2>
+        <div className="mt-4 grid gap-4">
+          <PageHeader
+            title="My orders"
+            breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'My orders' }]}
+          />
+          <PageHeader title="Shop" />
+        </div>
       </section>
     </main>
   );
