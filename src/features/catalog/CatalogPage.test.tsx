@@ -40,4 +40,16 @@ describe('CatalogPage', () => {
 
     expect(await screen.findByRole('heading', { name: 'Red Apples, 1 kg' })).toBeInTheDocument();
   });
+
+  it('shows the next page when a page number is clicked', async () => {
+    const user = userEvent.setup();
+    renderWithProviders(<CatalogPage />);
+
+    const nextBtn = await screen.findByRole('button', { name: '2' });
+
+    await user.click(nextBtn);
+
+    expect(await screen.findByRole('heading', { name: 'Greek Yogurt, 500 g' })).toBeInTheDocument();
+    expect(nextBtn).toHaveAttribute('aria-current', 'page');
+  });
 });

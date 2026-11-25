@@ -5,11 +5,12 @@ import { ProductCard } from './ProductCard';
 import { ProductCardSkeleton } from './ProductCardSkeleton';
 import { EmptyState } from '../../shared/ui/EmptyState';
 import { Button } from '../../shared/ui/Button';
+import { Pagination } from '../../shared/ui/Pagination';
 
 const PAGE_SIZE = 8;
 
 export function CatalogPage() {
-  const [page] = useState(1);
+  const [page, setPage] = useState(1);
   const products = useProducts({ page, pageSize: PAGE_SIZE });
   const groups = useGroups();
 
@@ -56,16 +57,25 @@ export function CatalogPage() {
       );
     }
 
+    const totalPages = Math.ceil(products.data.total / PAGE_SIZE);
+
     return (
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {products.data?.items.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            groupName={getGroupName(product.groupIds)}
-          />
-        ))}
-      </div>
+      <>
+        <div
+          className={`grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 ${products.isPlaceholderData ? 'opacity-60' : ''}`}
+        >
+          {products.data.items.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              groupName={getGroupName(product.groupIds)}
+            />
+          ))}
+        </div>
+        <div className="mt-10">
+          <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+        </div>
+      </>
     );
   }
 
