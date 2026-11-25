@@ -6,7 +6,7 @@ export type Db = {
   groups: ProductGroup[];
 };
 
-const STORAGE_KEY = 'shopflow-db-1';
+const STORAGE_KEY = 'shopflow-db-2';
 
 function createSeedDb(): Db {
   return structuredClone({ products: seedProducts, groups: seedGroups });

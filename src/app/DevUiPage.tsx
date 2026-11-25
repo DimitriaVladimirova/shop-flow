@@ -16,6 +16,9 @@ import { Table, TBody, THead, Tr, Th, Td } from '../shared/ui/Table';
 import { Header } from '../shared/layout/Header';
 import { PageHeader } from '../shared/layout/PageHeader';
 import { Footer } from '../shared/layout/Footer';
+import { ProductCard } from '../features/catalog/ProductCard';
+import { seedProducts } from '../mocks/seed';
+import { Pagination } from '../shared/ui/Pagination';
 
 export function DevUiPage() {
   const colours = [
@@ -38,6 +41,7 @@ export function DevUiPage() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
+  const [demoPage, setDemoPage] = useState(1);
 
   return (
     <main className="min-h-screen bg-light-gray-1 p-8">
@@ -317,6 +321,21 @@ export function DevUiPage() {
       <section className="mt-10">
         <h2 className=" text-h5 font-bold text-dark">Footer</h2>
         <Footer />
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Product cards</h2>
+        <div className="mt-4 grid max-w-xl grid-cols-2 gap-6">
+          <ProductCard product={seedProducts[0]} groupName="Fruit & Vegetables" />
+          <ProductCard product={seedProducts[18]} groupName="Home & Kitchen" />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-h5 font-bold text-dark">Pagination</h2>
+        <div className="mt-4">
+          <Pagination page={demoPage} totalPages={5} onPageChange={setDemoPage} />
+        </div>
       </section>
     </main>
   );

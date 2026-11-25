@@ -4,6 +4,7 @@ import '@fontsource/montserrat/400.css';
 import '@fontsource/montserrat/700.css';
 import './index.css';
 import App from './App.tsx';
+import { AppProviders } from './app/providers.tsx';
 
 async function enableMocking() {
   if (import.meta.env.VITE_USE_MOCKS !== 'true') {
@@ -17,7 +18,9 @@ async function enableMocking() {
 enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <App />
+      <AppProviders>
+        <App />
+      </AppProviders>
     </StrictMode>,
   );
 });

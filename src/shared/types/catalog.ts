@@ -15,6 +15,7 @@ export type Product = {
   currency: 'EUR';
   image: string;
   stock: number;
+  unit: string;
   groupIds: string[];
   type: ProductType;
 };

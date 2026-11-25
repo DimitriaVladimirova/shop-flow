@@ -21,7 +21,7 @@ export function Input({ label, hint, error, className = '', ...rest }: InputProp
         id={id}
         aria-invalid={error ? true : undefined}
         aria-describedby={message ? messageId : undefined}
-        className={`cursor-pointer rounded-md border bg-light-gray-1 px-5 py-3.75 text-paragraph text-dark focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 ${
+        className={`cursor-text rounded-md border bg-light-gray-1 px-5 py-3.75 text-paragraph text-dark focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 ${
           error ? 'border-danger focus:border-danger' : 'border-light-gray-2 focus:border-primary'
         }`}
         {...rest}
