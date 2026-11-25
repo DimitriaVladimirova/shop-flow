@@ -5,6 +5,7 @@ import '@fontsource/montserrat/700.css';
 import './index.css';
 import App from './App.tsx';
 import { AppProviders } from './app/providers.tsx';
+import { BrowserRouter } from 'react-router';
 
 async function enableMocking() {
   if (import.meta.env.VITE_USE_MOCKS !== 'true') {
@@ -19,7 +20,9 @@ enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <AppProviders>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </AppProviders>
     </StrictMode>,
   );

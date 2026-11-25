@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+
 type Breadcrumb = {
   label: string;
   href?: string;
@@ -28,9 +30,9 @@ export function PageHeader({ title, breadcrumbs }: PageHeaderProps) {
                     </span>
                   )}
                   {crumb.href ? (
-                    <a href={crumb.href} className="hover:underline">
+                    <Link to={crumb.href} className="hover:underline">
                       {crumb.label}
-                    </a>
+                    </Link>
                   ) : (
                     <span>{crumb.label}</span>
                   )}

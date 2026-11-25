@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Mail, Phone } from 'lucide-react';
 import { Logo } from './Logo';
+import { Link } from 'react-router';
 
 type HeaderProps = {
   actions?: ReactNode;
@@ -32,14 +33,14 @@ export function Header({ actions }: HeaderProps) {
           <Logo />
           <ul className="flex items-center gap-6">
             <li>
-              <a href="/" className="text-h6 font-bold text-second-text hover:text-primary">
+              <Link to={'/'} className="text-h6 font-bold text-second-text hover:text-primary">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/shop" className="text-h6 font-bold text-second-text hover:text-primary">
+              <Link to={'/shop'} className="text-h6 font-bold text-second-text hover:text-primary">
                 Shop
-              </a>
+              </Link>
             </li>
           </ul>
           <div className="ml-auto flex items-center gap-4">{actions}</div>
