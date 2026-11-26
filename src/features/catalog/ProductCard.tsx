@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { formatPrice } from '../../shared/lib/formatPrice';
 import type { Product } from '../../shared/types/catalog';
 import { Badge } from '../../shared/ui/Badge';
@@ -28,8 +29,12 @@ export function ProductCard({ product, groupName, onAddToCart }: ProductCardProp
         )}
       </div>
       <div className="p-4 flex flex-col gap-2">
-        {groupName && <p className="text-small text-second-text">{groupName}</p>}
-        <h3 className="text-h5 font-bold text-dark">{product.name}</h3>
+        {groupName && <p className="text-small text-second-text"> {groupName}</p>}
+        <h3 className="text-h5 font-bold text-dark">
+          <Link to={`/p/${product.slug}`} className="hover:text-primary">
+            {product.name}
+          </Link>
+        </h3>
         <div className="flex items-baseline gap-1">
           <span className="text-h4 font-bold text-primary">{formatPrice(product.price)}</span>
           <span className="text-small text-second-text">/ {product.unit}</span>

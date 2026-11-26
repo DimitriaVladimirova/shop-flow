@@ -1,5 +1,5 @@
 import { getJson } from '../../shared/api/httpClient';
-import type { ProductGroup } from '../../shared/types/catalog';
+import type { Product, ProductGroup } from '../../shared/types/catalog';
 import type { ProductsResponse, ProductsParams } from './types';
 
 export function fetchProducts(params: ProductsParams = {}) {
@@ -19,6 +19,10 @@ export function fetchProducts(params: ProductsParams = {}) {
   return getJson<ProductsResponse>(url);
 }
 
+export function fetchProduct(slug: string) {
+  return getJson<Product>(`/api/products/${slug}`);
+}
+
 export function fetchGroups() {
   return getJson<ProductGroup[]>('/api/groups');
 }
@@ -27,4 +31,5 @@ export const catalogKeys = {
   all: ['catalog'] as const,
   products: (params: ProductsParams) => [...catalogKeys.all, 'products', params] as const,
   groups: () => [...catalogKeys.all, 'groups'] as const,
+  product: (slug: string) => [...catalogKeys.all, 'product', slug] as const,
 };

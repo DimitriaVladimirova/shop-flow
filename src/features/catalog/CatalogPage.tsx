@@ -6,6 +6,7 @@ import { ProductCardSkeleton } from './ProductCardSkeleton';
 import { EmptyState } from '../../shared/ui/EmptyState';
 import { Button } from '../../shared/ui/Button';
 import { Pagination } from '../../shared/ui/Pagination';
+import { findGroup } from './findGroup';
 
 const PAGE_SIZE = 8;
 
@@ -13,12 +14,6 @@ export function CatalogPage() {
   const [page, setPage] = useState(1);
   const products = useProducts({ page, pageSize: PAGE_SIZE });
   const groups = useGroups();
-
-  function getGroupName(groupIds: string[]) {
-    const group = groups.data?.find((g) => groupIds.includes(g.id));
-
-    return group?.name;
-  }
 
   function renderContent() {
     if (products.isPending) {
@@ -68,7 +63,7 @@ export function CatalogPage() {
             <ProductCard
               key={product.id}
               product={product}
-              groupName={getGroupName(product.groupIds)}
+              groupName={findGroup(groups.data, product.groupIds)?.name}
             />
           ))}
         </div>
