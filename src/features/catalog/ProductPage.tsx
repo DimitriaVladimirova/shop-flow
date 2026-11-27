@@ -11,12 +11,15 @@ import { formatPrice } from '../../shared/lib/formatPrice';
 import { useGroups } from './useGroups';
 import { findGroup } from './findGroup';
 import { Check } from 'lucide-react';
+import { QuantityStepper } from '../../shared/ui/QuantityStepper';
+import { useState } from 'react';
 
 export function ProductPage() {
   const { slug } = useParams();
   const product = useProduct(slug ?? '');
   const groups = useGroups();
 
+  const [quantity, setQuantity] = useState(1);
   if (product.isPending) {
     return (
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -97,6 +100,12 @@ export function ProductPage() {
               <p className="text-paragraph text-second-text">{item.description}</p>
               <hr className="border-light-gray-2" />
               <div className="flex items-center gap-4">
+                <QuantityStepper
+                  value={quantity}
+                  max={item.stock}
+                  onChange={setQuantity}
+                  disabled={isSoldOut}
+                />
                 <Button disabled={isSoldOut}>{isSoldOut ? 'Sold out' : 'Add to cart'}</Button>
               </div>
               <ul className="flex flex-col gap-2 rounded-xl border border-success bg-success-faded/40 p-4 text-paragraph text-dark">
