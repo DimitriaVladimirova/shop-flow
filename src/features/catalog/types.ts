@@ -10,4 +10,5 @@ export type ProductsResponse = {
 export type ProductsParams = {
   page?: number;
   pageSize?: number;
+  group?: string;
 };

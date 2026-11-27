@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useProducts } from './useProducts';
 import { useGroups } from './useGroups';
 import { ProductCard } from './ProductCard';
@@ -7,13 +6,31 @@ import { EmptyState } from '../../shared/ui/EmptyState';
 import { Button } from '../../shared/ui/Button';
 import { Pagination } from '../../shared/ui/Pagination';
 import { findGroup } from './findGroup';
+import { CategoryNav } from './CategoryNav';
+import { useSearchParams } from 'react-router';
 
 const PAGE_SIZE = 8;
 
-export function CatalogPage() {
-  const [page, setPage] = useState(1);
-  const products = useProducts({ page, pageSize: PAGE_SIZE });
+type CatalogPageProps = {
+  groupSlug?: string;
+};
+
+export function CatalogPage({ groupSlug }: CatalogPageProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get('page')) || 1;
   const groups = useGroups();
+  const products = useProducts(
+    { group: groupSlug, page, pageSize: PAGE_SIZE },
+    { enabled: !groupSlug || groups.isSuccess },
+  );
+
+  function handlePageChange(newPage: number) {
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set('page', String(newPage));
+      return next;
+    });
+  }
 
   function renderContent() {
     if (products.isPending) {
@@ -68,11 +85,18 @@ export function CatalogPage() {
           ))}
         </div>
         <div className="mt-10">
-          <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+          <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
       </>
     );
   }
 
-  return <section className="mx-auto max-w-6xl px-6 py-12">{renderContent()}</section>;
+  return (
+    <section className="mx-auto max-w-6xl px-6 py-12">
+      <div className="mb-8">
+        <CategoryNav />
+      </div>
+      {renderContent()}
+    </section>
+  );
 }

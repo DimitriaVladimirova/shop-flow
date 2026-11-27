@@ -13,6 +13,10 @@ export function fetchProducts(params: ProductsParams = {}) {
     search.set('pageSize', String(params.pageSize));
   }
 
+  if (params.group) {
+    search.set('group', params.group);
+  }
+
   const query = search.toString();
   const url = query ? `/api/products?${query}` : '/api/products';
 
